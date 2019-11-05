@@ -82,6 +82,7 @@ T_stdv = varfun(@Wstd,rawSensorDataTrain);
 T_pca  = varfun(@Wpca1,rawSensorDataTrain);
 T_aad = varfun(@Waad,rawSensorDataTrain);
 T_iqr = varfun(@Wiqr, rawSensorDataTrain);
+T_mad = varfun(@Wmad, rawSensorDataTrain);
 
 humanActivityData = [T_mean, T_stdv, T_pca, T_aad];
 humanActivityData.activity = trainActivity;
