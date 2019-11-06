@@ -63,6 +63,8 @@ plotRawSensorData(total_acc_x_train, total_acc_y_train, ...
 rawSensorDataTrain = table(...
     total_acc_x_train, total_acc_y_train, total_acc_z_train, ...
     body_gyro_x_train, body_gyro_y_train, body_gyro_z_train);
+rawAccelDataTrain = table(...
+    total_acc_x_train, total_acc_y_train, total_acc_z_train);
 
 %% Pre-process Training Data: *Feature Extraction*
 % Lets start with a simple preprocessing technique. Since the raw sensor 
@@ -84,7 +86,9 @@ T_aad = varfun(@Waad,rawSensorDataTrain);
 T_iqr = varfun(@Wiqr, rawSensorDataTrain);
 T_mad = varfun(@Wmad, rawSensorDataTrain);
 
-humanActivityData = [T_mean, T_stdv, T_pca, T_aad];
+T_ara = varfun(@Wavgacc, rawAccelDataTrain);
+
+humanActivityData = [T_mean, T_stdv, T_pca, T_aad, T_iqr, T_mad, T_ara];
 humanActivityData.activity = trainActivity;
 
 %% Use the new features to train a model and assess its performance 

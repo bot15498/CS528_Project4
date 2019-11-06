@@ -1,0 +1,5 @@
+All trained on fine trees
+1. Accuracy: 96.2%, 
+2. Accuracy: 96.2%, not much of a change. Most likely because data is very close together so AAD is close to 0.
+6. Accuracy: 96.7%, 
+3.
