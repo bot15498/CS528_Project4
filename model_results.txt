@@ -1,5 +1,405 @@
-All trained on fine trees
-1. Accuracy: 96.2%, 
-2. Accuracy: 96.2%, not much of a change. Most likely because data is very close together so AAD is close to 0.
-6. Accuracy: 96.7%, 
-3.
+Model set 1:
+Fine Tree:		96.2%
+Medium Tree:		90.3%
+Coarse Tree:		83.2%
+Linear Discriminant:	84.7%
+Quadratic Discriminant:	90.1%
+Naive Bayes (Gaussian):	82.3%
+Naive Bayes (Kernel):	90.9%
+SVM (linear):		90.1%
+SVM (Quad):		96.2%
+SVM (Cubic): 		98.8%
+SVM (Fine Gaussian):	99.6%
+SVM (Medium Gaussian):	96.0%
+SVM (Coarse Gaussian):	90.3%
+KNN (Fine):		100%
+KNN (Medium):		94.7%
+KNN (Coarse):		86.9%
+KNN (Cosine):		94.9%
+KNN (Cubic):		94.1%
+KNN (Weighted):		100%
+Boosted Trees:		93.1%
+Bagged Trees:		100%
+Subspace Discriminant:	85.2%
+Subspace KNN:		100%
+RUSBoosted Trees:	91.9%
+
+Most accurate is fine KNN, weighted KNN, bagged trees and subspace KNN.
+Looking at the scatter plots, there is some argument for a clustering alorithm having high accuracy
+due to most of the points following clear clusters. This also helps explain why  simple SVMs have 
+high accuracy as well.
+
+
+
+Model set 2:
+Fine Tree:		96.2%
+Medium Tree:		90.3%
+Coarse Tree:		83.2%
+Linear Discriminant:	Failed
+Quadratic Discriminant:	Failed
+Naive Bayes (Gaussian):	82.0%
+Naive Bayes (Kernel):	91.4%
+SVM (linear):		90.2%
+SVM (Quad):		96.2%
+SVM (Cubic): 		98.6%
+SVM (Fine Gaussian):	99.4%
+SVM (Medium Gaussian):	95.7%
+SVM (Coarse Gaussian):	90.1%
+KNN (Fine):		100%
+KNN (Medium):		90.6%
+KNN (Coarse):		83.4%
+KNN (Cosine):		91.0%
+KNN (Cubic):		89.8%
+KNN (Weighted):		100%
+Boosted Trees:		93.1%
+Bagged Trees:		100%
+Subspace Discriminant:	84.8%
+Subspace KNN:		100%
+RUSBoosted Trees:	91.6%
+
+Most accurate is fine KNN, weighted KNN, bagged trees and subspace KNN. This is the same as the previous
+feature set. We suspect that there is little difference between the two models since Average Absolute
+Difference of each axis is close to zero due to small variance. 
+Similarly, the Discriminant classifiers likely failed due to the variance of the Average Absolute 
+Difference feature being very close to 0.
+ 
+
+
+Model set 3:
+Fine Tree:		96.3%
+Medium Tree:		90.4%
+Coarse Tree:		83.2%
+Linear Discriminant:	Failed
+Quadratic Discriminant:	Failed
+Naive Bayes (Gaussian):	83.0%
+Naive Bayes (Kernel):	91.8%
+SVM (linear):		90.0%
+SVM (Quad):		96.2%
+SVM (Cubic): 		98.2%
+SVM (Fine Gaussian):	99.4%
+SVM (Medium Gaussian):	95.7%
+SVM (Coarse Gaussian):	90.4%
+KNN (Fine):		100%
+KNN (Medium):		90.4%
+KNN (Coarse):		83.1%
+KNN (Cosine):		91.3%
+KNN (Cubic):		89.6%
+KNN (Weighted):		100%
+Boosted Trees:		93.3%
+Bagged Trees:		100%
+Subspace Discriminant:	85.2%
+Subspace KNN:		100%
+RUSBoosted Trees:	91.9%
+
+Most accurate is fine KNN, weighted KNN, bagged trees and subspace KNN. This is the same as the previous
+two feature sets. We suspect this is because the average resultant acceleration is a single value, while 
+each other "feature" is actually 6 additional features to train on. It is possible that the contribution 
+of the Average Resultant Acceleration of the acceleration data is getting a low weight in most model 
+calculations. 
+
+
+
+Model set 4:
+Fine Tree:		96.0%
+Medium Tree:		90.4%
+Coarse Tree:		83.2%
+Linear Discriminant:	Failed
+Quadratic Discriminant:	Failed
+Naive Bayes (Gaussian):	84.5%
+Naive Bayes (Kernel):	92.3%
+SVM (linear):		91.1%
+SVM (Quad):		97.6%
+SVM (Cubic): 		99.1%
+SVM (Fine Gaussian):	99.8%
+SVM (Medium Gaussian):	97.2%
+SVM (Coarse Gaussian):	91.7%
+KNN (Fine):		100%
+KNN (Medium):		91.6%
+KNN (Coarse):		84.0%
+KNN (Cosine):		92.8%
+KNN (Cubic):		90.2%
+KNN (Weighted):		100%
+Boosted Trees:		93.3%
+Bagged Trees:		99.9%
+Subspace Discriminant:	87.9%
+Subspace KNN:		100%
+RUSBoosted Trees:	92.1%
+
+Most accurate is fine KNN, weighted KNN, and subspace KNN. SVM classifiers are now very close to
+100% accuracy. 
+
+
+
+Model set 5:
+Fine Tree:		96.5%
+Medium Tree:		90.7%
+Coarse Tree:		83.2%
+Linear Discriminant:	Failed
+Quadratic Discriminant:	Failed
+Naive Bayes (Gaussian):	86.1%
+Naive Bayes (Kernel):	94.9%
+SVM (linear):		93.0%
+SVM (Quad):		99.0%
+SVM (Cubic): 		99.8%
+SVM (Fine Gaussian):	100%
+SVM (Medium Gaussian):	98.4%
+SVM (Coarse Gaussian):	92.4%
+KNN (Fine):		100%
+KNN (Medium):		90.8%
+KNN (Coarse):		82.3%
+KNN (Cosine):		91.5%
+KNN (Cubic):		87.7%
+KNN (Weighted):		100%
+Boosted Trees:		94.7%
+Bagged Trees:		100%
+Subspace Discriminant:	89.1%
+Subspace KNN:		100%
+RUSBoosted Trees:	92.8%
+
+Most accurate is Fine Gaussian SVM, fine KNN, weighted KNN, bagged trees and subspace KNN.
+The SVM classifies continue to increase in accuracy as more features are added. At the same time,
+it appears that the clustering KNN results are getting worse as more features are added.
+
+
+
+Model set 6:
+Fine Tree:		96.7%
+Medium Tree:		90.9%
+Coarse Tree:		83.2%
+Linear Discriminant:	87.6%
+Quadratic Discriminant:	91.4%
+Naive Bayes (Gaussian):	82.2%
+Naive Bayes (Kernel):	90.8%
+SVM (linear):		92.4%
+SVM (Quad):		97.6%
+SVM (Cubic): 		99.1%
+SVM (Fine Gaussian):	99.7%
+SVM (Medium Gaussian):	97.1%
+SVM (Coarse Gaussian):	91.1%
+KNN (Fine):		100%
+KNN (Medium):		95.3%
+KNN (Coarse):		86.7%
+KNN (Cosine):		95.3%
+KNN (Cubic):		94.4%
+KNN (Weighted):		100%
+Boosted Trees:		93.6%
+Bagged Trees:		100%
+Subspace Discriminant:	86.3%
+Subspace KNN:		100%
+RUSBoosted Trees:	92.4%
+
+Most accurate is fine KNN, weighted KNN, bagged trees and subspace KNN. 
+
+
+
+Model set 7:
+Fine Tree:		
+Medium Tree:		
+Coarse Tree:		
+Linear Discriminant:	
+Quadratic Discriminant:	
+Naive Bayes (Gaussian):	
+Naive Bayes (Kernel):	
+SVM (linear):		
+SVM (Quad):		
+SVM (Cubic): 		
+SVM (Fine Gaussian):	
+SVM (Medium Gaussian):	
+SVM (Coarse Gaussian):	
+KNN (Fine):		
+KNN (Medium):		
+KNN (Coarse):		
+KNN (Cosine):		
+KNN (Cubic):		
+KNN (Weighted):		
+Boosted Trees:		
+Bagged Trees:		
+Subspace Discriminant:	
+Subspace KNN:		
+RUSBoosted Trees:	
+
+
+Model 5 with 5% Holdout validation:
+Fine Tree:		91.3%
+Medium Tree:		87.5%
+Coarse Tree:		82.3%
+Linear Discriminant:	Failed
+Quadratic Discriminant:	Failed
+Naive Bayes (Gaussian):	83.7%
+Naive Bayes (Kernel):	92.1%
+SVM (linear):		91.6%
+SVM (Quad):		95.4%
+SVM (Cubic): 		95.6%
+SVM (Fine Gaussian):	28.1%
+SVM (Medium Gaussian):	94.0%
+SVM (Coarse Gaussian):	90.2%
+KNN (Fine):		86.4%
+KNN (Medium):		87.7%
+KNN (Coarse):		80.4%
+KNN (Cosine):		84.7%
+KNN (Cubic):		82.8%
+KNN (Weighted):		86.4%
+Boosted Trees:		91.6%
+Bagged Trees:		93.5%
+Subspace Discriminant:	89.4%
+Subspace KNN:		92.6%
+RUSBoosted Trees:	88.6%
+
+Classifier with the highest accuracy is SVM with cubic kernel. The accuracy of the classifiers is
+much lower than before because there is now a training set to judge the accuracy of the classifiers.
+The previous classifiers did both training and testing on all the data, so the models were very 
+overfit for the given data.
+
+
+
+Model 5 with 10% Holdout validation:
+Fine Tree:		93.2%
+Medium Tree:		90.2%
+Coarse Tree:		83.8%
+Linear Discriminant:	Failed
+Quadratic Discriminant:	Failed
+Naive Bayes (Gaussian):	85.9%
+Naive Bayes (Kernel):	92.1%
+SVM (linear):		92.4%
+SVM (Quad):		96.5%
+SVM (Cubic): 		96.1%
+SVM (Fine Gaussian):	28.0%
+SVM (Medium Gaussian):	95.6%
+SVM (Coarse Gaussian):	92.2%
+KNN (Fine):		85.9%
+KNN (Medium):		86.5%
+KNN (Coarse):		78.2%
+KNN (Cosine):		88.0%
+KNN (Cubic):		82.2%
+KNN (Weighted):		86.5%
+Boosted Trees:		94.0%
+Bagged Trees:		95.4%
+Subspace Discriminant:	88.3%
+Subspace KNN:		94.8%
+RUSBoosted Trees:	92.2%
+
+Classifier with highest accuracy is SVM with Quadradic kernel. 
+
+
+
+Model 5 with 15% Holdout validation:
+Fine Tree:		93.2%
+Medium Tree:		90.2%
+Coarse Tree:		83.8%
+Linear Discriminant:	Failed
+Quadratic Discriminant:	Failed
+Naive Bayes (Gaussian):	85.9%
+Naive Bayes (Kernel):	92.1%
+SVM (linear):		92.4%
+SVM (Quad):		96.5%
+SVM (Cubic): 		96.1%
+SVM (Fine Gaussian):	28.0%
+SVM (Medium Gaussian):	95.6%
+SVM (Coarse Gaussian):	92.2%
+KNN (Fine):		85.9%
+KNN (Medium):		86.5%
+KNN (Coarse):		78.2%
+KNN (Cosine):		88.0%
+KNN (Cubic):		82.2%
+KNN (Weighted):		86.5%
+Boosted Trees:		94.0%
+Bagged Trees:		95.4%
+Subspace Discriminant:	88.3%
+Subspace KNN:		94.8%
+RUSBoosted Trees:	92.2%
+
+Classifiers with the highest accuracy are both SVMs, with one havinga quadratic kernel and the other
+having a cubic function kernel.
+
+
+
+Model 5 with 20% Holdout validation:
+Fine Tree:		92.7%
+Medium Tree:		88.9%
+Coarse Tree:		83.4%
+Linear Discriminant:	Failed
+Quadratic Discriminant:	Failed
+Naive Bayes (Gaussian):	85.6%
+Naive Bayes (Kernel):	90.3%
+SVM (linear):		92.0%
+SVM (Quad):		96.1%
+SVM (Cubic): 		96.4%
+SVM (Fine Gaussian):	28.0%
+SVM (Medium Gaussian):	94.4%
+SVM (Coarse Gaussian):	91.5%
+KNN (Fine):		85.9%
+KNN (Medium):		86.0%
+KNN (Coarse):		79.5%
+KNN (Cosine):		89.0%
+KNN (Cubic):		81.8%
+KNN (Weighted):		86.4%
+Boosted Trees:		93.1%
+Bagged Trees:		93.7%
+Subspace Discriminant:	88.8%
+Subspace KNN:		94.0%
+RUSBoosted Trees:	91.1%
+
+Classifier with the highest accuracy is SVM with cubic kernel. It should be noted that the
+SVM with the quadratic kernel is not far behind.
+
+
+
+Model 5 with 25% Holdout validation:
+Fine Tree:		92.5%
+Medium Tree:		88.5%
+Coarse Tree:		83.2%
+Linear Discriminant:	Failed
+Quadratic Discriminant:	Failed
+Naive Bayes (Gaussian):	86.7%
+Naive Bayes (Kernel):	90.9%
+SVM (linear):		93.0%
+SVM (Quad):		96.7%
+SVM (Cubic): 		96.9%
+SVM (Fine Gaussian):	28.0%
+SVM (Medium Gaussian):	95.1%
+SVM (Coarse Gaussian):	91.7%
+KNN (Fine):		85.1%
+KNN (Medium):		87.1%
+KNN (Coarse):		81.8%
+KNN (Cosine):		89.1%
+KNN (Cubic):		83.5%
+KNN (Weighted):		87.5%
+Boosted Trees:		93.9%
+Bagged Trees:		93.6%
+Subspace Discriminant:	89.7%
+Subspace KNN:		94.8%
+RUSBoosted Trees:	91.3%
+
+Classifier with the highest accuract is Cubic SVM. This is the same classifier with the
+highest accuracy from the previous tests as well. 
+
+
+
+
+Model 5 with 30% Holdout validation:
+Fine Tree:		93.3%
+Medium Tree:		89.4%
+Coarse Tree:		82.0%
+Linear Discriminant:	Failed
+Quadratic Discriminant:	Failed
+Naive Bayes (Gaussian):	87.1%
+Naive Bayes (Kernel):	90.5%
+SVM (linear):		91.3%
+SVM (Quad):		95.2%
+SVM (Cubic): 		95.3%
+SVM (Fine Gaussian):	28.0%
+SVM (Medium Gaussian):	94.6%
+SVM (Coarse Gaussian):	91.4%
+KNN (Fine):		84.5%
+KNN (Medium):		86.8%
+KNN (Coarse):		79.9%
+KNN (Cosine):		88.3%
+KNN (Cubic):		81.2%
+KNN (Weighted):		86.1%
+Boosted Trees:		92.7%
+Bagged Trees:		93.1%
+Subspace Discriminant:	88.4%
+Subspace KNN:		94.7%
+RUSBoosted Trees:	90.8%
+Classifier with the highest accuracy is SVMwith a cubic kernel. This is closely followed by
+SVM with a quadradic kernel, which is the same as the previous holdout experiements. 

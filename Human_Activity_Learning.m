@@ -65,6 +65,8 @@ rawSensorDataTrain = table(...
     body_gyro_x_train, body_gyro_y_train, body_gyro_z_train);
 rawAccelDataTrain = table(...
     total_acc_x_train, total_acc_y_train, total_acc_z_train);
+rawGyroDataTrain = table(...
+    body_gyro_x_train, body_gyro_y_train, body_gyro_z_train);
 
 %% Pre-process Training Data: *Feature Extraction*
 % Lets start with a simple preprocessing technique. Since the raw sensor 
@@ -85,10 +87,19 @@ T_pca  = varfun(@Wpca1,rawSensorDataTrain);
 T_aad = varfun(@Waad,rawSensorDataTrain);
 T_iqr = varfun(@Wiqr, rawSensorDataTrain);
 T_mad = varfun(@Wmad, rawSensorDataTrain);
+T_peaks = varfun(@Wfindpeaks, rawSensorDataTrain);
+T_bins = varfun(@Wbinned, rawSensorDataTrain);
+T_kurtosis = varfun(@Wkurtosis, rawSensorDataTrain);
+T_var = varfun(@Wvariance, rawSensorDataTrain);
 
-T_ara = varfun(@Wavgacc, rawAccelDataTrain);
+T_ara = rowfun(@Wavgacc, rawAccelDataTrain, 'OutputVariableNames', 'Wavgacc');
+T_corrAccel = rowfun(@Wcorrelation, rawAccelDataTrain, 'OutputVariableNames', ...
+    {'Wcorrelation_accel_XY', 'Wcorrelation_accel_XZ', 'Wcorrelation_accel_YZ'});
+T_corrGyro = rowfun(@Wcorrelation, rawGyroDataTrain, 'OutputVariableNames', ...
+    {'Wcorrelation_gyro_XY', 'Wcorrelation_gyro_XZ', 'Wcorrelation_gyro_YZ'});
 
-humanActivityData = [T_mean, T_stdv, T_pca, T_aad, T_iqr, T_mad, T_ara];
+humanActivityData = [T_mean, T_stdv, T_pca, T_aad, T_iqr, T_mad, ...
+    T_ara, T_peaks, T_kurtosis, T_bins, T_corrAccel, T_corrGyro, T_var];
 humanActivityData.activity = trainActivity;
 
 %% Use the new features to train a model and assess its performance 
